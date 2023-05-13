@@ -158,6 +158,35 @@ class Human:
         self.days_indexes(day)
         dice = random.randint(1, 4)
 
+        if self.satiety < 20:
+            print('I`ll go eat')
+            self.eat()
+        elif self.gladness < 20:
+            if self.home.mess > 15:
+                print('I want to chill, but there is so much mess... \n So I will clean the house')
+                self.clean_home()
+            else:
+                print('Let`s chill')
+                self.chill()
+        elif self.money < 0:
+            print('Start working')
+            self.work()
+        elif self.car.strangth < 15:
+            print('I need to repair my car')
+            self.to_repair()
+        elif dice == 1:
+            print('Let`s chill')
+            self.chill()
+        elif dice == 2:
+            print('Let`s work')
+        elif dice == 3:
+            print('Cleaning time')
+        elif dice == 4:
+            print('Time to treats!')
+            self.shopping(manage='delicacies')
+
+
+
 
 class Auto:
     def __init__(self, brand_list):
