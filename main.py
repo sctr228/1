@@ -15,17 +15,35 @@
 #
 # vasya = Child()
 
+# class Computer:
+#     def calculator(self):
+#         print('Calculating...')
+#
+# class Display:
+#     def display(self):
+#         print('I display the image on the screen')
+# class Smartphone(Display, Computer):
+#     pass
+#
+# iphone = Smartphone()
+#
+# iphone.calculator()
+# iphone.display()
+
 class Computer:
-    def calculator(self):
-        print('Calculating...')
+    def __init__(self):
+        super().__init__()
+        self.memory = 128
 
 class Display:
-    def display(self):
-        print('I display the image on the screen')
-class Smartphone(Display, Computer):
-    pass
+    def __init__(self):
+        super().__init__()
+        self.resolution = '4k'
+class SmartPhone(Computer, Display):
+    def print_info(self):
+        print(self.resolution)
+        print(self.memory)
 
-iphone = Smartphone()
+iphone = SmartPhone()
 
-iphone.calculator()
-iphone.display()
+iphone.print_info()
