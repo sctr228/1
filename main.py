@@ -128,7 +128,7 @@ class Human:
         car_indexes = f"{self.car.brand} car indexes"
         print(f"{car_indexes:^50}", "\n")
         print(f"fuel - {self.car.fuel}")
-        print(f"strangth - {self.car.strangth}")
+        print(f"strength - {self.car.strength}")
 
 #      --------------Here-----------------
 
@@ -171,7 +171,7 @@ class Human:
         elif self.money < 0:
             print('Start working')
             self.work()
-        elif self.car.strangth < 15:
+        elif self.car.strength < 15:
             print('I need to repair my car')
             self.to_repair()
         elif dice == 1:
