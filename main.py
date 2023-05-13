@@ -31,8 +31,9 @@
 # iphone.display()
 
 class Computer:
-    def __init__(self):
+    def __init__(self, model):
         super().__init__()
+        self.model = model
         self.memory = 128
 
 class Display:
@@ -41,9 +42,10 @@ class Display:
         self.resolution = '4k'
 class SmartPhone(Computer, Display):
     def print_info(self):
+        print(self.model)
         print(self.resolution)
         print(self.memory)
 
-iphone = SmartPhone()
+iphone = SmartPhone(model = 'Last')
 
 iphone.print_info()
