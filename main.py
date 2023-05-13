@@ -79,6 +79,7 @@ class Human:
 
     def shopping(self, manage):
 #      --------------Here-----------------
+
         if self.car.drive():
             pass
         else:
@@ -156,6 +157,7 @@ class Human:
             print(f'I don`t have a job, going to get a job {self.job.job} with salary {self.job.salary}')
         self.days_indexes(day)
         dice = random.randint(1, 4)
+
 
 class Auto:
     def __init__(self, brand_list):
