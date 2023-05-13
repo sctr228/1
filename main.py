@@ -131,8 +131,31 @@ class Human:
 
 #      --------------Here-----------------
 
+    def is_alive(self):
+        if self.gladness < 0:
+            print('Depression')
+            return False
+        elif self.satiety < 0:
+            print('Dead...')
+            return False
+        if self.money < -500:
+            print('Bunkrupt...')
+            return False
 
-
+    def live(self, day):
+        if self.is_alive() == False:
+            return False
+        if self.home is None:
+            print('Setteled in the house')
+            self.get_home()
+        if self.car is None:
+            self.get_car()
+            print(f'I bought a car {self.car.brand}')
+        if self.job is None:
+            self.get_job()
+            print(f'I don`t have a job, going to get a job {self.job.job} with salary {self.job.salary}')
+        self.days_indexes(day)
+        dice = random.randint(1, 4)
 
 class Auto:
     def __init__(self, brand_list):
@@ -176,3 +199,10 @@ class Job:
         self.job = random.choice(list(job_list))
         self.salary = job_list[self.job]['salary']
         self.gladness_less = job_list[self.job]['gladness_less']
+
+
+nick = Human(name='Nick')
+
+for day in range(1, 8):
+    if nick.live(day) == False:
+        break
