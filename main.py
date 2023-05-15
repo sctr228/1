@@ -43,7 +43,7 @@ class Human:
         self.home = home
 
     def get_home(self):
-        self.home = House()
+        self.home = House(house_list)
 
     def get_car(self):
         self.car = Auto(brands_of_car)
@@ -121,7 +121,7 @@ class Human:
         print(f"Money - {self.money}")
         print(f"Satiety - {self.satiety}")
         print(f"Gladness - {self.gladness}")
-        home_indexes = "Home indexes"
+        home_indexes = 'home indexes'
         print(f"{home_indexes:^50}", "\n")
         print(f"Food - {self.home.food}")
         print(f"Mess - {self.home.mess}")
@@ -147,8 +147,8 @@ class Human:
         if self.is_alive() == False:
             return False
         if self.home is None:
-            print('Setteled in the house')
             self.get_home()
+            print(f'I bought a home {self.home.house}')
         if self.car is None:
             self.get_car()
             print(f'I bought a car {self.car.brand}')
@@ -206,9 +206,9 @@ class Auto:
 
 
 class House:
-    def __init__(self):
-        self.mess = 0
-        self.food = 0
+    def __init__(self, house_list):
+        self.house = random.choice(list(house_list))
+        self.gladness_adds = house_list[self.house]['gladness_adds']
 
 
 job_list = {
@@ -222,6 +222,12 @@ brands_of_car = {
     'Lada': {'fuel': 50, 'strength': 40, 'consumption': 10},
     'Volvo': {'fuel': 70, 'strength': 150, 'consumption': 8},
     'Ferrari': {'fuel': 80, 'strength': 120, 'consumption': 14},
+}
+house_list = {
+    'Flat': {'gladness_adds': 6},
+    'House': {'gladness_adds': 8},
+    'Two-story house': {'gladness_adds': 10},
+    'Flat in the city center': {'gladness_adds': 12},
 }
 
 
