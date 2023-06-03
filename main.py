@@ -41,9 +41,13 @@ class Human:
         self.job = job
         self.car = car
         self.home = home
+        self.pet = Pet
 
     def get_home(self):
         self.home = House(house_list)
+
+    def get_pet(self):
+        self.pet = Pet(pet_list)
 
     def get_car(self):
         self.car = Auto(brands_of_car)
@@ -64,7 +68,8 @@ class Human:
                 self.satiety = 100
                 return
             self.satiety += 5
-            self.home.food -= 5
+            self.home.food -= 10
+            self.home.food -= self.pet.food_less
 
     def work(self):
         if self.car.drive():
@@ -78,8 +83,6 @@ class Human:
         self.satiety -= 4
 
     def shopping(self, manage):
-#      --------------Here-----------------
-
         if self.car.drive():
             pass
         else:
@@ -102,7 +105,7 @@ class Human:
             self.gladness += 10
             self.satiety += 2
     def chill(self):
-        self.gladness += 10
+        self.gladness += self.house.gladness_adds
         self.home.mess += 5
 
     def clean_home(self):
@@ -155,11 +158,14 @@ class Human:
         if self.job is None:
             self.get_job()
             print(f'I don`t have a job, going to get a job {self.job.job} with salary {self.job.salary}')
+        if self.pet is None:
+            self.get_pet()
+            print(f'I bought a pet {self.pet.pet}')
         self.days_indexes(day)
         dice = random.randint(1, 4)
 
         if self.satiety < 20:
-            print('I`ll go eat')
+            print(f'I`ll go eat and feed my {self.pet.pet}')
             self.eat()
         elif self.gladness < 20:
             if self.home.mess > 15:
@@ -210,6 +216,11 @@ class House:
         self.house = random.choice(list(house_list))
         self.gladness_adds = house_list[self.house]['gladness_adds']
 
+class Pet:
+    def __init__(self, pet_list):
+        self.pet = random.choice(list(pet_list))
+        self.gladness_adds = pet_list[self.pet]['gladness_adds']
+
 
 job_list = {
     'Java developer': {'salary': 50, 'gladness_less': 10},
@@ -228,6 +239,11 @@ house_list = {
     'House': {'gladness_adds': 8},
     'Two-story house': {'gladness_adds': 10},
     'Flat in the city center': {'gladness_adds': 12},
+}
+pet_list = {
+    'Cat': {'gladness_adds': 6, 'food_less': 5},
+    'Dog': {'gladness_adds': 4, 'food_less': 8},
+    'Fish': {'gladness_adds': 3, 'food_less': 3},
 }
 
 
