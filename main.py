@@ -33,7 +33,7 @@ import random
 
 
 class Human:
-    def __init__(self, name='Human', job=None, home=None, car=None):
+    def __init__(self, name='Human', job=None, home=None, car=None, pet=None):
         self.name = name
         self.money = 100
         self.gladness = 50
@@ -41,7 +41,7 @@ class Human:
         self.job = job
         self.car = car
         self.home = home
-        self.pet = Pet
+        self.pet = pet
 
     def get_home(self):
         self.home = House(house_list)
@@ -133,7 +133,6 @@ class Human:
         print(f"fuel - {self.car.fuel}")
         print(f"strength - {self.car.strength}")
 
-#      --------------Here-----------------
 
     def is_alive(self):
         if self.gladness < 0:
@@ -212,6 +211,9 @@ class Auto:
 
 
 class House:
+    def __init__(self):
+        self.mess = 0
+        self.food = 0
     def __init__(self, house_list):
         self.house = random.choice(list(house_list))
         self.gladness_adds = house_list[self.house]['gladness_adds']
