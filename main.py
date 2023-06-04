@@ -1,39 +1,9 @@
 import random
 
 
-# class Human:
-#     def __init__(self, name='Human'):
-#         self.name = name
-#
-#
-# class Auto:
-#     def __init__(self, brand):
-#         self.brand = brand
-#         self.passengers = []
-#
-#     def add_passenger(self, human):
-#         self.passengers.append(human)
-#
-#     def print_passengers_names(self):
-#         if self.passengers != []:
-#             print(f"Names of {self.brand} passengers:")
-#             for passenger in self.passengers:
-#                 print(passenger.name)
-#         else:
-#             print(f"There are no passengers in {self.brand}")
-#
-#
-# petya = Human('Petya')
-# mari = Human('Mari')
-# car = Auto('Mercedes')
-#
-# car.add_passenger(petya)
-# car.add_passenger(mari)
-# car.print_passengers_names()
-
 
 class Human:
-    def __init__(self, name='Human', job=None, home=None, car=None, pet=None):
+    def __init__(self, name='Human', job=None, home=None, car=None, pet=None, girlfriend=None):
         self.name = name
         self.money = 100
         self.gladness = 50
@@ -42,9 +12,11 @@ class Human:
         self.car = car
         self.home = home
         self.pet = pet
+        self.girlfriend = girlfriend
 
     def get_home(self):
         self.home = House(house_list)
+
 
     def get_pet(self):
         self.pet = Pet(pet_list)
@@ -151,6 +123,7 @@ class Human:
         if self.home is None:
             self.get_home()
             print(f'I bought a home {self.home.house}')
+            print(f'I got a girlfriend')
         if self.car is None:
             self.get_car()
             print(f'I bought a car {self.car.brand}')
@@ -189,6 +162,23 @@ class Human:
         elif dice == 4:
             print('Time to treats!')
             self.shopping(manage='delicacies')
+
+        moodG = random.randint(1, 3)
+        if moodG == 1:
+            print('Girlfriend: Time to go shopping!')
+            self.money -= 20
+        elif moodG == 2:
+            print('Girlfriend: I bought you something')
+            self.food += 30
+            self.gladness += 10
+        elif moodG == 3:
+            print('Girlfriend: Today is my birthday')
+            self.money -= 50
+            moodN = random.randint(1, 2)
+            if moodN == 1:
+                self.gladness += 20
+            else:
+                self.gladness -= 20
 
 
 
@@ -249,11 +239,14 @@ pet_list = {
 }
 
 
+
 class Job:
     def __init__(self, job_list):
         self.job = random.choice(list(job_list))
         self.salary = job_list[self.job]['salary']
         self.gladness_less = job_list[self.job]['gladness_less']
+
+
 
 
 nick = Human(name='Nick')
